@@ -1,4 +1,6 @@
 import { contact } from "./contact.js"
+import fs from "fs"
+import LineByline from "n-readlines"
 
 
 export class Annuaire {
@@ -6,10 +8,10 @@ export class Annuaire {
     this.contactList = []
   }
 
-  AddContact(json){
-    const {nom,prenom,phone,email}=json
+  AddContact(nom,prenom,phone,email){
     const id = Math.random().toString(16).slice(2)
     this.contactList.push(new contact(id,nom,prenom,phone,email))
+    fs.appendFile("data.csv",`${id},${nom},${prenom},${phone},${email}`)
   }
 
   findContact(id){

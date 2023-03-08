@@ -8,7 +8,8 @@ const app = express()
 app.use(express.json())
 
 app.post('/add',(req,res)=>{
-  annuaire.AddContact(req.body)
+  const {nom,prenom,phone,email}=req.body
+  annuaire.AddContact(nom,prenom,phone,email)
   res.json(annuaire.contactList[annuaire.contactList.length-1])
 })
 
